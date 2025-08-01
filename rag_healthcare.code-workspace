@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../chroma_db"
+		},
+		{
+			"path": "../data"
+		},
+		{
+			"path": "../rag"
+		}
+	],
+	"settings": {}
+}
