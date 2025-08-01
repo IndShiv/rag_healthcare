@@ -1,0 +1,5 @@
+[theme]
+primaryColor = "#8B2635"          # Deep burgundy red (matches their logo text)
+backgroundColor = "#FFFFFF"        # Clean white background
+secondaryBackgroundColor = "#FDF8F9"  # Very light burgundy tint
+textColor = "#2C1B1F"             # Dark burgundy-brown for readability
