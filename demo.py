@@ -8,8 +8,7 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from dotenv import load_dotenv
 
 # Set up OpenAI API key
-os.environ["OPENAI_API_KEY"] = "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"
-
+os.environ["OPENAI_API_KEY"] = "Key"
 
 # Document loader 
 
