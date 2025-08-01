@@ -13,10 +13,14 @@ load_dotenv()
 # Disable ChromaDB telemetry to reduce noise
 os.environ["ANONYMIZED_TELEMETRY"] = "False"
 
-# Set up OpenAI API key
+# Set up OpenAI API key - get from Streamlit secrets
 if not os.getenv("OPENAI_API_KEY"):
-    os.environ["OPENAI_API_KEY"] = "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"
-
+    try:
+        os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+    except:
+        st.error("⚠️ OpenAI API key not found. Please set it in Streamlit Cloud secrets.")
+        st.stop()
+        
 # Streamlit page config
 st.set_page_config(
     page_title="Dutch Healthcare RAG Assistant",
