@@ -7,6 +7,10 @@ from langchain.chains import RetrievalQA
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from dotenv import load_dotenv
 
+from langchain_community.vectorstores import FAISS
+
+
+
 # Load environment variables
 load_dotenv()
 
@@ -53,11 +57,13 @@ def setup_rag_system():
         embeddings = OpenAIEmbeddings()
         
         # Create vector store
-        vectorstore = Chroma.from_documents(
-            documents=chunks,
-            embedding=embeddings,
-            persist_directory="./chroma_db"
+
+        # In setup_rag_system function:
+        vectorstore = FAISS.from_documents(
+        documents=chunks,
+        embedding=embeddings
         )
+
         
         # Create LLM
         llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
