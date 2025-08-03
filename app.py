@@ -79,21 +79,46 @@ def setup_rag_system():
         return qa_chain, len(documents), len(chunks)
 
 def ask_question(qa_chain, question, conversation_history=None):
-    """Ask a question with optional conversation context"""
+    """Ask a question with custom healthcare funding prompt"""
+    
+    # Custom system prompt for healthcare funding
+    system_prompt = """You are a specialized expert in Dutch healthcare innovation funding. 
+    Your role is to provide clear, actionable guidance on funding options for healthcare innovations in the Netherlands.
+
+    Guidelines:
+    - Give specific, practical advice based on the provided context
+    - Structure responses with clear headings when appropriate
+    - Always mention relevant funding mechanisms (DBC, MSZ, facultatieve prestatie, etc.)
+    - Include concrete next steps when possible
+    - If information is uncertain, clearly state limitations
+    - Focus on actionable outcomes rather than general information
+    - Use professional but accessible language
+
+    When the context doesn't contain sufficient information, say: "Based on the available information, I cannot provide a complete answer to this specific question. I recommend consulting with a healthcare funding expert or zorgverzekeraar for detailed guidance."
+    """
+    
     with st.spinner("Searching knowledge base..."):
-        # Add context if there's conversation history
         if conversation_history:
-            context_prompt = f"""
+            enhanced_question = f"""
+            {system_prompt}
+            
             Previous conversation context:
             {conversation_history}
             
             Current question: {question}
             
-            Please answer the current question, taking into account the previous conversation if relevant.
+            Please provide a comprehensive answer based on the context provided, taking into account any previous conversation.
             """
-            result = qa_chain.invoke({"query": context_prompt})
         else:
-            result = qa_chain.invoke({"query": question})
+            enhanced_question = f"""
+            {system_prompt}
+            
+            Question: {question}
+            
+            Please provide a comprehensive answer based on the context provided.
+            """
+            
+        result = qa_chain.invoke({"query": enhanced_question})
         return result
 
 # Initialize session state for conversation history
