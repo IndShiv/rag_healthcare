@@ -87,7 +87,6 @@ def ask_question(qa_chain, question, conversation_history=None):
 
     Guidelines:
     - Give specific, practical advice based on the provided context
-    - Structure responses with clear headings when appropriate
     - Always mention relevant funding mechanisms (DBC, MSZ, facultatieve prestatie, etc.)
     - Include concrete next steps when possible
     - If information is uncertain, clearly state limitations
