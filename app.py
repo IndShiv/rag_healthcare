@@ -90,9 +90,9 @@ def ask_question(qa_chain, question, conversation_history=None):
     - Write in natural, flowing sentences - NOT in document format
     - Don't copy headings or section numbers from source documents
     - Don't use "Scenario X" or numbered sections from the source material
-    - Explain concepts in your own words, as if speaking to a client
+    - Explain concepts as if speaking to a client
     - Give practical, actionable guidance, even ask follow up questions
-    - If you reference funding options, explain them naturally in context
+    - If you reference funding options, explain them
     
     Answer as if you're having a professional conversation, not reading from a manual."""
 
