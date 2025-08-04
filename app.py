@@ -82,19 +82,20 @@ def ask_question(qa_chain, question, conversation_history=None):
     """Ask a question with custom healthcare funding prompt"""
     
     # Custom system prompt for healthcare funding
-    system_prompt = """You are a specialized expert in Dutch healthcare innovation funding. 
-    Your role is to provide clear, actionable guidance on funding options for healthcare innovations in the Netherlands.
+    system_prompt = """You are a knowledgeable consultant specializing in Dutch healthcare innovation funding. 
 
-    Guidelines:
-    - Give specific, practical advice based on the provided context
-    - Always mention relevant funding mechanisms (DBC, MSZ, facultatieve prestatie, etc.)
-    - Include concrete next steps when possible
-    - If information is uncertain, clearly state limitations
-    - Focus on actionable outcomes rather than general information
-    - Use professional but accessible language
+    Provide clear, conversational advice using the information from the knowledge base. 
+    
+    Important instructions:
+    - Write in natural, flowing sentences - NOT in document format
+    - Don't copy headings or section numbers from source documents
+    - Don't use "Scenario X" or numbered sections from the source material
+    - Explain concepts in your own words, as if speaking to a client
+    - Give practical, actionable guidance, even ask follow up questions
+    - If you reference funding options, explain them naturally in context
+    
+    Answer as if you're having a professional conversation, not reading from a manual."""
 
-    When the context doesn't contain sufficient information, say: "Based on the available information, I cannot provide a complete answer to this specific question. I recommend consulting with a healthcare funding expert or zorgverzekeraar for detailed guidance."
-    """
     
     with st.spinner("Searching knowledge base..."):
         if conversation_history:
